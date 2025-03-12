@@ -10,7 +10,7 @@ console.log(`Build running on ${process.platform}-${process.arch}`)
 
 const buildScriptDirectory = import.meta.dirname
 const workingDirectory = path.resolve("./dist")
-await fs.mkdir(workingDirectory)
+if (!fs.existsSync(workingDirectory)) fs.mkdirSync(workingDirectory)
 
 const targets = [
 	{ name: "win-x64", platform: "win32", arch: "x64", parcelWatcherVariant: "win32-x64" },
