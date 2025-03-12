@@ -38,7 +38,7 @@ for (const target of targets) {
 	console.log(`\nPackaging for ${target.name}...`)
 
 	// load bundle.js
-	let bundle = fs.readFileSync(path.join(workingDirectory, "bundle.js")).toString()
+	let bundle = fs.readFileSync("src/index.js").toString()
 
 	// inject require statements for `@parcel/watcher-${variant}`
 	const injectSnippet = target.name.startsWith("linux")
@@ -50,8 +50,8 @@ for (const target of targets) {
 	fs.writeFileSync(path.join(workingDirectory, `bundle-${target.name}.js`), bundle)
 
 	// install `keytar` for target
-	await executeCommand("npm uninstall --force keytar")
-	await executeCommand(`npm install --force keytar --platform=${target.platform} --arch=${target.arch}`)
+	/*await executeCommand("npm uninstall --force keytar")
+	await executeCommand(`npm install --force keytar --platform=${target.platform} --arch=${target.arch}`)*/
 
 	// bundle native modules using bpkg
 	await bpkg.build({
@@ -67,7 +67,7 @@ for (const target of targets) {
 	await pkg.exec(`--sea -t ${target.platform}-${target.arch} -o ${workingDirectory}/filen-cli-${target.name} ${workingDirectory}/bundle-${target.name}-2.js --options max-old-space-size=16384`.split(" "))
 
 	// replace app icon (Windows)
-	if (target.platform === "win32") {
+	/*if (target.platform === "win32") {
 		const exe = PELibrary.NtExecutable.from(fs.readFileSync(path.join(workingDirectory, `filen-cli-${target.name}.exe`)), { ignoreCert: true })
 		const res = PELibrary.NtExecutableResource.from(exe)
 		const iconFile = ResEdit.Data.IconFile.from(fs.readFileSync(path.join(buildScriptDirectory, "icon.ico")))
@@ -79,12 +79,12 @@ for (const target of targets) {
 		res.outputResource(exe)
 		const newBinary = exe.generate()
 		fs.writeFileSync(`${workingDirectory}/filen-cli-${target.name}.exe`, Buffer.from(newBinary))
-	}
+	}*/
 }
 
 // remove temporary @parcel/watcher-${variant} and keytar dependencies
-await executeCommand(`npm uninstall --force ${parcelWatcherDependencies.join(" ")} keytar`)
-await executeCommand("npm install keytar")
+/*await executeCommand(`npm uninstall --force ${parcelWatcherDependencies.join(" ")} keytar`)
+await executeCommand("npm install keytar")*/
 
 
 // util

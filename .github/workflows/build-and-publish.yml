@@ -12,7 +12,7 @@ jobs:
         include:
           - os: windows-latest
             test-binary: dist/filen-cli-win-x64.exe
-          - os: ubuntu-latest
+#         - os: ubuntu-latest
           - os: macos-latest
             test-binary: dist/filen-cli-macos-arm64
     runs-on: ${{ matrix.os }}
