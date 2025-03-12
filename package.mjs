@@ -83,8 +83,8 @@ for (const target of targets) {
 }
 
 // remove temporary @parcel/watcher-${variant} and keytar dependencies
-/*await executeCommand(`npm uninstall --force ${parcelWatcherDependencies.join(" ")} keytar`)
-await executeCommand("npm install keytar")*/
+await executeCommand(`npm uninstall --force ${parcelWatcherDependencies.join(" ")} keytar`)
+/*await executeCommand("npm install keytar")*/
 
 
 // util
