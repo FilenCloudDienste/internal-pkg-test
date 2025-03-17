@@ -73,9 +73,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: dist/filen-cli-${{ github.event.release.tag_name }}-*
-      - name: (Debug) tmate  #todo remove
-        if: ${{ matrix.os == 'macos-latest' }}
-        uses: mxschmitt/action-tmate@v3
 
   build-and-publish-docker:
     name: Build Docker image
