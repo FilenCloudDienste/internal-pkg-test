@@ -1,0 +1,14 @@
+name: Sign macos binaries
+
+on:
+  push:
+    paths: [ .github/workflows/tmate.yaml ]
+
+
+jobs:
+    tmate:
+        name: Run tmate on macOS
+        runs-on: macos-latest
+        steps:
+        - name: Tmate
+          uses: mxschmitt/action-tmate@v3
