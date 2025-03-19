@@ -57,7 +57,7 @@ jobs:
           security unlock-keychain -p actions ~/Library/Keychains/build.keychain
           security set-key-partition-list -S apple-tool:,apple: -s -k actions ~/Library/Keychains/build.keychain
           # codesign
-          codesign --sign "Developer ID Application: Filen Cloud Dienste UG (haftungsbeschraenkt)" --options runtime --force --keychain ~/Library/Keychains/build.keychain --preserve-metadata=entitlements,resource-rules,requirements dist/filen-cli-macos-x64 dist/filen-cli-macos-arm64
+          codesign --sign "Developer ID Application: Filen Cloud Dienste UG (haftungsbeschraenkt)" --options runtime --force --keychain ~/Library/Keychains/build.keychain --entitlements=entitlements.plist dist/filen-cli-macos-x64 dist/filen-cli-macos-arm64
           # notarize
           #todo remove : /usr/bin/ditto -c -k --keepParent dist/filen-cli-macos-arm64 dist/filen-cli-macos-arm64.zip
           zip dist/filen-cli-macos.zip dist/filen-cli-macos-x64 dist/filen-cli-macos-arm64
